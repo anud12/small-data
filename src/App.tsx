@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from "react";
+import {TextFile} from "./input/directory-input";
+import {Frame} from "./app/frame";
+import {Upload} from "./app/upload";
+import {Dashboard} from "./app/dashboard/dashboard";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type State = {
+    textFiles: Array<TextFile>
 }
 
-export default App;
+export class App extends Component<{}, State> {
+    state: State = {
+        textFiles: []
+    };
+
+    render = () => (
+        <Fragment>
+            <Frame show={this.state.textFiles.length === 0}>
+                <Upload onUpload={textFiles => {
+                    this.setState({textFiles})
+                }
+                }/>
+            </Frame>
+            <Frame show={this.state.textFiles.length > 0}>
+                <Dashboard textFiles={this.state.textFiles}/>
+            </Frame>
+
+        </Fragment>
+    )
+};

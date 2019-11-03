@@ -7,9 +7,14 @@
     "@types/node": "12.12.5",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
+    "bizcharts": "^3.5.5",
+    "chart.js": "^2.9.1",
+    "moment": "^2.24.0",
     "react": "^16.11.0",
+    "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
+    "rxjs": "^6.5.3",
     "typescript": "3.6.4"
   },
   "scripts": {
