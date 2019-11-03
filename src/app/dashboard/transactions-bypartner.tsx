@@ -81,7 +81,7 @@ export class TransactionsByPartner extends Component<Props, State> {
                             .map(v => v.date)}
                         y={this.state.transactionData.filter(v => v.debit !== "0")
                             .map(v => v.debit)}/>
-                    <StepLineChart
+                    <LineChart
                         style={{flexGrow: 1}}
                         name={"Credit"}
                         onClick={element => console.log(element)}

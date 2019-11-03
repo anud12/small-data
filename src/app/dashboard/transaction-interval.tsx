@@ -98,8 +98,16 @@ export class TransactionInterval extends Component<Props, State> {
                                            value={this.state.starDate}
                                            onChange={({target: {value}}) => this.setState({starDate: value})}/>
                                 </label>
-                                <button>+</button>
-                                <button>-</button>
+                                <button onClick={() => this.setState((prevState: State) => {
+                                    return {starDate: moment(prevState.starDate, "YYYY-MM-DD").subtract(1, "month").format("YYYY-MM-DD")}
+                                })}>
+                                    {"<"}
+                                </button>
+                                <button onClick={() => this.setState((prevState: State) => {
+                                    return {starDate: moment(prevState.starDate, "YYYY-MM-DD").add(1, "month").format("YYYY-MM-DD")}
+                                })}>
+                                    {">"}
+                                </button>
                             </div>
                             <div>
                                 <label>
@@ -108,11 +116,16 @@ export class TransactionInterval extends Component<Props, State> {
                                            value={this.state.endDate}
                                            onChange={({target: {value}}) => this.setState({endDate: value})}/>
                                 </label>
-                                <button onChange={() => this.setState((prevState: State) => {
-                                    return {endDate: moment(prevState.endDate, "YYYY-MM-DD").add(1, "month").format("YYYY-MM-DD")}
-                                })}>+
+                                <button onClick={() => this.setState((prevState: State) => {
+                                    return {endDate: moment(prevState.endDate, "YYYY-MM-DD").subtract(1, "month").format("YYYY-MM-DD")}
+                                })}>
+                                    {"<"}
                                 </button>
-                                <button>-</button>
+                                <button onClick={() => this.setState((prevState: State) => {
+                                    return {endDate: moment(prevState.endDate, "YYYY-MM-DD").add(1, "month").format("YYYY-MM-DD")}
+                                })}>
+                                    {">"}
+                                </button>
                             </div>
                         </LayoutLine>
                         <LineChart
@@ -123,7 +136,7 @@ export class TransactionInterval extends Component<Props, State> {
                                 .map(v => v.date)}
                             y={transactionData.filter(v => v.debit !== "0")
                                 .map(v => v.debit)}/>
-                        <StepLineChart
+                        <LineChart
                             style={{flexGrow: 1}}
                             name={"Credit"}
                             onClick={element => console.log(element)}
